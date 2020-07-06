@@ -516,7 +516,10 @@ spec:
   ports:
     # the port that this service should serve on
   - port: 5672
-    targetPort: 5672
+    targetPort: 5672    
+    name: "amq"
+  - port: 4369
+    name: "epmd"
   selector:
     name: rabbitmq
 ---
