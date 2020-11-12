@@ -5,11 +5,12 @@ metadata:
   namespace: sock-shop
 spec:
   selector:
-    istio: ingressgateway # use istio default controller
+    istio: istio-system/ingressgateway 
   servers:
   - port:
       number: 80
       name: http
       protocol: HTTP
+      targetPort: 30001
     hosts:
-    - "*"
+     - "*"
