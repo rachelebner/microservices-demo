@@ -1,32 +1,8 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: carts
-spec:
-  hosts:
-  - carts
-  http:
-  - route:
-    - destination:
-        host: carts
-        subset: v1
----
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: carts
-spec:
-  host: carts
-  subsets:
-  - name: v1
-    labels:
-      version: v1
-      name: carts
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
   name: carts-db
+  namespace: sock-shop
 spec:
   hosts:
   - carts-db
@@ -40,6 +16,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: carts-db
+  namespace: sock-shop
 spec:
   host: carts-db
   subsets:
@@ -52,6 +29,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: catalogue
+  namespace: sock-shop
 spec:
   hosts:
   - catalogue
@@ -65,6 +43,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: catalogue
+  namespace: sock-shop
 spec:
   host: catalogue
   subsets:
@@ -77,6 +56,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: catalogue-db
+  namespace: sock-shop
 spec:
   hosts:
   - catalogue-db
@@ -90,6 +70,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: catalogue-db
+  namespace: sock-shop
 spec:
   host: catalogue-db
   subsets:
@@ -101,36 +82,8 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: front-end
-  namespace: sock-shop
-spec:
-  hosts:
-  - "*"
-  gateways:
-  - sockshop-gateway
-  http:
-  - route:
-    - destination:
-        host: front-end
-        subset: v1
-
----
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: front-end
-spec:
-  host: front-end
-  subsets:
-  - name: v1
-    labels:
-      version: v1
-      name: front-end
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
   name: orders
+  namespace: sock-shop
 spec:
   hosts:
   - orders
@@ -144,6 +97,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: orders
+  namespace: sock-shop
 spec:
   host: orders
   subsets:
@@ -156,6 +110,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: orders-db
+  namespace: sock-shop
 spec:
   hosts:
   - orders-db
@@ -169,6 +124,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: orders-db
+  namespace: sock-shop
 spec:
   host: orders-db
   subsets:
@@ -181,6 +137,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: payment
+  namespace: sock-shop
 spec:
   hosts:
   - payment
@@ -194,6 +151,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: payment
+  namespace: sock-shop
 spec:
   host: payment
   subsets:
@@ -206,6 +164,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: queue-master
+  namespace: sock-shop
 spec:
   hosts:
   - queue-master
@@ -219,6 +178,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: queue-master
+  namespace: sock-shop
 spec:
   host: queue-master
   subsets:
@@ -231,6 +191,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: rabbitmq
+  namespace: sock-shop
 spec:
   hosts:
   - rabbitmq
@@ -244,6 +205,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: rabbitmq
+  namespace: sock-shop
 spec:
   host: rabbitmq
   subsets:
@@ -256,6 +218,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: shipping
+  namespace: sock-shop
 spec:
   hosts:
   - shipping
@@ -269,6 +232,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: shipping
+  namespace: sock-shop
 spec:
   host: shipping
   subsets:
@@ -281,6 +245,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: user
+  namespace: sock-shop
 spec:
   hosts:
   - user
@@ -294,6 +259,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: user
+  namespace: sock-shop
 spec:
   host: user
   subsets:
@@ -306,6 +272,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: user-db
+  namespace: sock-shop  
 spec:
   hosts:
   - user-db
@@ -319,6 +286,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: user-db
+  namespace: sock-shop
 spec:
   host: user-db
   subsets:
